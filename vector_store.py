@@ -1,11 +1,11 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2") # A compact and efficient model for generating sentence embeddings.
 
-client = chromadb.Client()
+client = chromadb.Client() # Initialize the ChromaDB client to manage collections and perform operations on the vector database.
 
-collection = client.create_collection("docs")
+collection = client.create_collection("docs") # Create a collection named "docs" to store documents and their corresponding embeddings.
 
 def add_documents():
 
