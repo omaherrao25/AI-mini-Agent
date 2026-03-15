@@ -1,0 +1,5 @@
+CREATE TABLE memory (
+    id SERIAL PRIMARY KEY,
+    key VARCHAR(255) UNIQUE,
+    value VARCHAR(255)
+);
