@@ -9,10 +9,12 @@ def route_prompt(prompt: str):
         if match:
             return "memory_save", match.group(1), match.group(2)
 
+    # MEMORY READ
     if "what is my" in p:
-        match = re.search(r"what is my (.*)\??", p)
+        match = re.search(r"what is my (.+?)(\?|$)", p)
         if match:
-            return "memory_read", match.group(1), None
+            key = match.group(1).strip()
+            return "memory_read", key, None
 
     if "what is" in p:
         expr = (
