@@ -8,3 +8,6 @@ langchain-openai
 langgraph
 chromadb
 sentence-transformers
+langchain
+langchain-community
+ollama
