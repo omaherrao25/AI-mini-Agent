@@ -5,7 +5,7 @@ model = SentenceTransformer("all-MiniLM-L6-v2") # A compact and efficient model 
 
 client = chromadb.Client() # Initialize the ChromaDB client to manage collections and perform operations on the vector database.
 
-collection = client.create_collection("docs") # Create a collection named "docs" to store documents and their corresponding embeddings.
+collection = client.create_collection("docs") # ChromaDB stores document embeddings and allows similarity search.
 
 def add_documents():
 
@@ -17,13 +17,13 @@ def add_documents():
 
     for i, doc in enumerate(docs):
 
-        embedding = model.encode(doc).tolist()
+        embedding = model.encode(doc).tolist() # Generate a vector representation (embedding)
 
         collection.add(
             documents=[doc],
             embeddings=[embedding],
             ids=[str(i)]
-        )
+        ) # Add documents to the ChromaDB collection, storing both the text and its corresponding embedding for later retrieval.
 
 def search_docs(query):
 
@@ -32,6 +32,6 @@ def search_docs(query):
     results = collection.query(
         query_embeddings=[embedding],
         n_results=2
-    )
+    ) # finds documents that are semantically similar to the user's question
 
     return results["documents"]
